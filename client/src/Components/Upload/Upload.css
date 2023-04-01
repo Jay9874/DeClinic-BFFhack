@@ -1,0 +1,33 @@
+.preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.file-label {
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    display: table;
+    background-color: #3781cb8d;
+    ;
+    padding: 8px 16px;
+}
+
+.file-label:hover {
+    background-color: #3678ba8d;
+}
+
+.image-preview {
+    height: 700px;
+    width: 700px;
+    border: 1px solid #000;
+}
+.preview-iframe{
+    zoom: 1;
+    height: 700px;
+    width: 700px;
+    border: 1px solid #000;
+}

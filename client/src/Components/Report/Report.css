@@ -1,0 +1,19 @@
+.report-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    min-height: 520px;
+    /* background-color: blue; */
+    border-radius: 8px;
+    border: dashed 1px gray;
+}
+
+.report-data{
+    margin: 16px;
+    display: inline;
+    background-color: red;
+    width: 200px;
+    text-align: center;
+}

@@ -52,7 +52,7 @@ function Navbar ({ pages, user }) {
               textDecoration: 'none'
             }}
           >
-            DeClinic
+            DecentHealth
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -108,7 +108,7 @@ function Navbar ({ pages, user }) {
               textDecoration: 'none'
             }}
           >
-            DeClinic
+            DecentHealth
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(page => (

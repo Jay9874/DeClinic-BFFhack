@@ -27,7 +27,7 @@ function Copyright (props) {
     >
       {'Copyright © '}
       <Link color='inherit' href='/'>
-        DeClinic
+        DecentHealth
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}

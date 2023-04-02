@@ -1,4 +1,6 @@
-import * as React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+
 import './Upload.css'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -9,12 +11,11 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
-
 const theme = createTheme()
 
-export default function Upload () {
-  const [file, setFile] = React.useState(null)
-  const [imagePreview, setImagePreview] = React.useState(false)
+export default function Upload ({ account, provider, contract }) {
+  const [file, setFile] = useState(null)
+  const [imagePreview, setImagePreview] = useState(false)
 
   function onFileChange (event) {
     // Update the state
@@ -24,13 +25,33 @@ export default function Upload () {
     setFile(url)
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password')
-    })
+    if (file) {
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        const resFile = await axios({
+          method: 'post',
+          url: 'https://api.pinata.cloud/pinning/pinFileToIPFS',
+          data: formData,
+          headers: {
+            pinata_api_key: `Enter Your Key`,
+            pinata_secret_api_key: `Enter Your Secret Key`,
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        const ImgHash = `ipfs://${resFile.data.IpfsHash}`
+        //const signer = contract.connect(provider.getSigner());
+        const signer = contract.connect(provider.getSigner())
+        signer.add(account, ImgHash)
+      } catch (e) {
+        alert('Unable to upload image to Pinata')
+      }
+    }
+    alert('Successfully Image Uploaded')
+    setFile(null)
   }
 
   return (
@@ -150,19 +171,18 @@ export default function Upload () {
             </Button>
           </Box>
         </Box>
-        
       </Container>
       <div className='preview-container'>
-            {imagePreview && (
-              <div className='image-preview'>
-                <iframe
-                  src={file}
-                  title='preview'
-                  className='preview-iframe'
-                ></iframe>
-              </div>
-            )}
+        {imagePreview && (
+          <div className='image-preview'>
+            <iframe
+              src={file}
+              title='preview'
+              className='preview-iframe'
+            ></iframe>
           </div>
+        )}
+      </div>
     </ThemeProvider>
   )
 }

@@ -1,19 +1,39 @@
 .report-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
+    width: 500px;
     min-height: 520px;
     /* background-color: blue; */
     border-radius: 8px;
     border: dashed 1px gray;
+    padding: 10px;
+    text-align: center;
 }
 
 .report-data{
     margin: 16px;
     display: inline;
-    background-color: red;
-    width: 200px;
+    /* background-color: red; */
+    width: 360px;
+    background-color: #ccc;
     text-align: center;
+    text-align: center;
+}
+.report-data-key{
+    margin: 0 auto;
+    width: 360px;
+    background-color: #ccc;
+    padding: 10px 0;
+}
+
+.report-button{
+    margin-top: 30px;
+    padding: 15px 0;
+    width: 360px;
+    background-color: #5fc015;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.report-button:hover{
+    background-color: #4b9e0f;
 }
